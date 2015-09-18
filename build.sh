@@ -9,7 +9,8 @@ install_dir=arch
 work_dir=work
 out_dir=out
 
-arch=$(uname -m)
+#arch=$(uname -m)
+arch=x86_64
 verbose=""
 script_path=$(readlink -f ${0%/*})
 
@@ -239,31 +240,31 @@ mkdir -p ${work_dir}
 run_once make_pacman_conf
 
 # Do all stuff for each airootfs
-for arch in i686 x86_64; do
+#for arch in i686 x86_64; do
     run_once make_basefs
     run_once make_packages
-done
+#done
 
-run_once make_packages_efi
+#run_once make_packages_efi
 
-for arch in i686 x86_64; do
+#for arch in i686 x86_64; do
     run_once make_setup_mkinitcpio
     run_once make_customize_airootfs
-done
+#done
 
-for arch in i686 x86_64; do
+#for arch in i686 x86_64; do
     run_once make_boot
-done
+#done
 
 # Do all stuff for "iso"
 run_once make_boot_extra
 run_once make_syslinux
 run_once make_isolinux
-run_once make_efi
-run_once make_efiboot
+#run_once make_efi
+#run_once make_efiboot
 
-for arch in i686 x86_64; do
+#for arch in i686 x86_64; do
     run_once make_prepare
-done
+#done
 
 run_once make_iso
