@@ -268,9 +268,3 @@ run_once make_isolinux
 #done
 
 run_once make_iso
-
-# Change ownership of the img to crusty
-if [[ -n $(egrep "^crusty" /etc/group) ]]; then
-    chown crusty:crusty "${out_dir}/${iso_name}-${iso_version}-dual.iso"
-    su crusty -c "ln -ifs ${out_dir}/${iso_name}-${iso_version}-dual.iso /home/crusty/live.iso"
-fi;
